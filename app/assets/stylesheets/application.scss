@@ -1,0 +1,861 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+*= require bootstrap-datepicker
+ */
+ @import  'bootstrap';
+
+
+$nav-link-colors: #fff;
+$nav-link-size: 22px;
+$main-font-family: Roboto, sans-serif;
+$roboto-thin-font-weight: 100;
+$roboto-light-font-weight: 300;
+$roboto-regular-font-weight: 400;
+
+$mockup-height: 900px;
+$mockup-width: 1440px;
+
+$mobile-mockup-height: 736px;
+$mobile-mockup-width: 414px;
+
+
+
+$body-color: #0f0f0f;
+$body-link-color: #F7931A;
+$button-color: #EB971C;
+$button-pressed-color: #BE7A17;
+$empty-font-color: #C1C1C1;
+$dark-bttn-pressed-color: rgba(255, 255, 255, 0.16);
+$light-bttn-pressed-color: rgb(247, 247, 247);;
+$form-controls-height: 50px / $mockup-height * 100%;
+$navbar-height: 70px / $mockup-height * 100vh;
+
+img, embed, object, video{
+  max-width: 100%
+}
+
+.modal-header .close{
+  padding: 2vw;
+}
+
+body{
+  background-color: #ffffff;
+
+}
+.account-card-list{
+  list-style: none;
+}
+
+.account-container{
+  padding: 0;
+}
+
+#search-transaction-modal{
+  .modal-body{
+    display: flex;
+    flex-direction: column;
+  }
+  #date-picker-container{
+
+    position: static;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    > div:first-child{
+      margin: 2vw;
+      a{
+        font-size: 4vw;
+        text-align: center;
+        display: block;
+      }
+    }
+    .datepicker{
+      display: block;
+      position: static;
+      height: 0;
+      flex: 1;
+      thead > tr:first-child, tfoot > tr:first-child {
+        display: none;
+      }
+    }
+  }
+  .form-group{
+    margin-bottom: 77px / $mockup-height * 100%;
+  }
+  .input-daterange input:first-child, .input-group{
+    border-radius: 100px;
+  }
+  .input-group{
+    &.error{
+      border: 1px solid red;
+    }
+    border: 1px solid #ced4da;
+    .form-control{
+      border: 0;
+      text-align: left;
+
+      &:focus{
+        outline: 0;
+      }
+    }
+      .input-group-addon{
+      display: flex;
+      margin-right: 4%;
+      svg{
+      height: auto;
+      width: 4vw;
+      path{
+        fill: #A2A1A1
+      }
+      }  
+    }
+    #start_date, #end_date{
+      text-align: left;
+    }
+  }
+  
+}
+
+
+.datepicker{
+  width: 100%;
+  height: 75vh;
+  table{
+    width: 100%;
+    height: 100%;
+  }
+  td, th{
+    font-size: 3vw;
+  }
+  tr {
+    th.next, th.prev{
+      font-size: 7vw;
+    }
+    th {
+      font-size: 5vw;
+    }
+  }
+} 
+
+
+#transaction-list {
+  padding: 2vw;
+  
+  li.transaction-list-item{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    font-size: 4vw;
+    margin-top: 5vh;
+    > div:first-child{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      span{
+        width: 20%;
+      margin-right: .5vw;
+      font-weight: 300;
+      }
+      hr{
+        border: 1.2px solid #d0d0d0;
+        width: 100%;
+      }
+    }
+
+    > div:last-child{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3vw 6vw;
+      background-color: #FBFBFB;
+      box-shadow: 0px 11px 16px 2px rgba(0,0,0, .16);
+      margin-top: 4vw;
+      > div{
+        display: flex;
+        justify-content: space-between;
+        span{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+        .name{
+          font-size: smaller;
+        }
+        .value{
+          span{
+            font-size: smaller
+          }
+
+          > span:first-child{
+            font-size: larger;
+          }
+          
+          .positive{
+            color: #058A0E;
+          }
+          
+          
+        }
+      }
+    }
+  }
+}
+
+.negative{
+  color: #EB381C;
+}
+
+#flash-modal{
+    &.show{
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .modal-dialog{
+      height: 50vh;
+    .modal-body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    
+    }
+  }
+}
+
+#accounts-show-container {
+  display: flex;
+  flex-direction: column;
+  #account-info-container{
+    justify-content: center;
+    > div{
+      padding: 3vw 0;
+    }
+  }
+}
+#account-info-container{
+  min-height: 20vw;
+  width: 100%;
+  
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  border-bottom: 1px solid #D0D0D0;
+  > div{
+    width: 100%;
+    display: flex;
+    margin: 3vw 0;
+    &.checking-name{
+      text-align: center
+    }
+
+    &:first-child span{
+      text-align: center;
+    }
+
+    &:nth-child(2){
+      display: block;
+    }
+    
+    ul{
+      list-style: none;
+      li{
+        width: 100%;
+        font-size: 3.5vw;
+        font-weight: $roboto-regular-font-weight;
+
+        > span:first-child{
+          margin-right: 5vw;
+        }
+        > span:last-child{
+          font-weight: $roboto-thin-font-weight;
+        }
+      }
+    }
+    .result-msg{
+      font-weight: 400;
+      font-size: 4vw;
+      color: $body-link-color;
+    }
+    > span{
+      font-weight: 100;
+      width: 50%;
+      text-align: left;
+    }
+  } 
+
+}
+
+.checking-name{
+  font-size: 5.5vw;
+  color: $body-link-color;
+}
+
+.amount{
+  font-size: 6vw;
+}
+
+.account-card{
+  border: 0;
+  min-height: 101.68px;
+  height: 101.68px / $mobile-mockup-height * 100vh;
+  min-width: 346.26px;
+  width: 346.26px / $mobile-mockup-width * 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
+  margin-top: 7vh;
+  background-color: #FBFBFB;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#add-account-bttn, #search-transaction-bttn{
+  height: 18vw;
+  width: 18vw;
+  border-radius: 50%;
+  font-size: 9vw;
+  text-align: center;
+  background-color: #FBFBFB;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3vh;
+  color: #FFA726;
+  border: 0;
+  box-shadow: 0 7px 10px 0px rgba(0, 0, 0, .16);
+  margin-right: 6vw;
+  outline: 0;
+
+  &:active, &:focus, &:hover, &.pressed {
+    background-color: $light-bttn-pressed-color;
+  }
+}
+
+#search-transaction-bttn svg{
+  height: auto;
+  width: 44%;
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+
+.modal-dialog {
+  position: fixed;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  max-width: 100%;
+}
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px solid #3c7dcf;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 93px / $mobile-mockup-height * 100vh;
+  padding: 10px;
+  background: white;
+  border-bottom: .2vh solid #e9ecef;
+  span{
+    font-size: 40px / $mobile-mockup-height * 100vh;
+  }
+  h5{
+    width: 100%;
+    text-align: center;
+    order: 1;
+    font-size: 4.5vh;
+    color: inherit;
+    line-height: inherit;
+  }
+  button{
+    order: 0;
+  }
+}
+
+.modal-title {
+  font-weight: 300;
+  font-size: 2em;
+  color: #fff;
+  line-height: 30px;
+}
+
+.modal-body {
+  position: relative;
+  width: 100%;
+  font-weight: 300;
+  overflow: auto;
+  textarea{
+    border-radius: 15px;
+    height: 25%;
+    margin-top: 12vw;
+  }
+  p, p a{
+    text-align: center;
+    font-size: 2.25vh
+  }
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle, .btn-primary:not(:disabled):not(.disabled):link, .btn-primary:not(:disabled):not(.disabled),  .btn-primary:not(:disabled):not(.disabled):visited {
+  color: #fff;
+  background-color: $button-color;
+  border-color: $button-color;
+}
+.btn-primary:hover, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active {
+  color: #fff;
+  background-color: $button-pressed-color;
+  border-color: $button-pressed-color;
+}
+
+.modal-footer {
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 80px / $mobile-mockup-height * 100vh;
+  padding: 0;
+  background: #f1f3f5;
+  button{
+    width: 100%;
+    height: 100%;
+    font-size: 3vh;
+    font-weight: $roboto-thin-font-weight;
+    border:0;
+
+  }
+}
+
+label.error {
+  color: red;
+  font-size: 1.5vh;
+  font-weight: bold;
+}
+
+.form-control.error {
+  border: red solid;
+}
+
+
+.input-fields{
+  margin-bottom: 77px / $mockup-height * 100%;
+  min-height: 45px;
+  min-width: 45px;
+  height: 50px / $mobile-mockup-height * 100vh;
+  border-radius: 100px;
+  font-size: 2.5vh;
+}
+
+
+#welcome-index{
+  min-width: $mobile-mockup-width;
+  background-color: #ECEFF1;
+  height: 100%;
+
+  #container{
+    min-height: 100% !important;
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    justify-content: space-between;
+    > .row:first-child .col{
+      flex-basis: auto; 
+     }
+     > .row:last-child{
+       margin-bottom: 5.5vh;
+     }
+  }
+  
+  .title-logo{
+    height: 91px / $mobile-mockup-height * 100vh;
+    width: auto;
+    margin-top: 12px / $mockup-height * 100vh;
+    margin-bottom: 53px / $mobile-mockup-height * 100%;
+  }
+
+  .name-logo{
+    height: 12vh;
+    width: auto;
+    margin-bottom: 33px / $mobile-mockup-height * 100%;
+  }
+  
+
+  input[type=submit]{
+    background-color: #FFA726;
+    color: #fff;
+  }
+
+  .form-buttons{
+    > *{
+      width: 100%;
+      display: block;
+      font-size: 5.5vw;
+      font-family: "Roboto";
+      font-weight: $roboto-thin-font-weight;
+      margin-top:  42px / $mobile-mockup-height * 100vh
+
+    }
+  }
+
+  #new_user{
+    width: 100%;
+    //height: 100%;
+    justify-content: space-between;
+
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  
+
+  form{
+    /*width: 360px / $mockup-width * 100%;
+    height: 302px / $mockup-height * 100%;*/
+
+  }
+
+  .btn{
+    border-radius: 100px;
+    padding: 12px 35px;
+    box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
+
+  }
+}
+
+// .input-fields{
+//   border-radius: 25px;
+//   display: block;
+//   height: 16%;
+//   padding: 12px 35px;
+//   width: 100%;
+//   margin-bottom: 77px / $mockup-height * 100%;
+// }
+
+// .title-logo{
+//   width: 127px;
+//   height: 127px;
+// }
+
+
+.title{
+  font-family: Sitka Text;
+  font-size: 60;
+  font-weight: bold;
+  color: #A2A1A1;
+  text-align: center;
+  width: 204px / $mobile-mockup-width * 100%;
+}
+
+.drawer-nav{
+    background-color: white;
+    position: fixed;
+    top: $navbar-height;
+    height: 100%;
+    z-index: 10000;
+    width: 60vw;
+    transition: all .3s ease;
+    visibility: hidden;
+    li{
+      margin-top: 22%;
+    }
+    a{
+      font-size: 2.5vh;
+      color: #212529;
+    }
+    ul{
+      list-style: none;
+    }
+}
+#main-nav{    
+  box-shadow: 6px 0px 20px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 0px;
+  left: -60vw;
+}
+
+#main-nav.open{
+  left: 0vw;
+  visibility: visible
+}
+
+#empty-transactions-container{
+  flex: 1;
+  div svg{
+    opacity: 50%;
+    width: 75%;
+    opacity: .5;
+  }
+}
+
+#transactions-search-container{
+  display: flex;
+  flex-direction: column;
+}
+
+ 
+
+.transactions-modal , #close-account-modal{
+  .modal-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .form-group, p{
+      font-size: 2.5vh;
+    }
+    .form-group{
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
+      .dollar-sign{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: larger;
+      }
+      input{
+        width: 90%;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+#empty-account-container,#empty-transactions-container {
+  text-align: center;
+  svg{
+    width: 346.26px / $mobile-mockup-width *  100vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  a{
+    font-size: 6vw;
+    font-weight: $roboto-light-font-weight
+  }
+  div > * {
+    display: block;
+  }
+  h2{
+    font-size: 5vw;
+    color: #c1c1c1;
+  }
+}
+
+#accounts-container{
+  padding: 0;
+}
+
+#user-main-drawer{
+  box-shadow: -6px 0px 61px 2px  rgba(0,0,0, .2);
+  right: -60vw;
+  margin-top: 0px;
+}
+
+#main-content{
+  height: 100%;
+  width: 100%;
+  
+  &.signed-in{
+    padding-top: $navbar-height;
+  }
+
+  > .row:first-child{
+    height: 100%;
+  }
+}
+#user-main-drawer.open{
+  right: 0vw;
+  visibility: visible;
+}
+
+#navbar-toggle-user svg{
+  height: 100%;
+}
+
+#navbar-brand-img{
+ svg{
+    width: auto;
+    height: 5vh;
+  }
+}
+
+#drawer-menu-bttn, button.navbar-toggler, button.navbar-brand  {
+  width: auto;
+  padding: 0 2em;
+  height: $navbar-height;
+  background-color: transparent;
+  border: transparent;
+  svg{
+    width: auto;
+    height: 3vh;
+  }
+}
+#drawer-menu-bttn, button.navbar-toggler, #navbar-brand-img{
+  &:active, &:focus, &:hover, &.pressed {
+    background-color: $dark-bttn-pressed-color;
+  }
+}
+
+.title-quote{
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 2.5vh;
+  color: #C1C1C1;
+}
+
+#drawer-menu-bttn{
+  position: relative;
+
+  .drawer-hamburger-icon:after, .drawer-hamburger-icon:before {
+      display: none;
+  }
+}
+
+
+
+div.drawer-overlay {
+  z-index: 10000;
+  background-color: transparent;
+}
+
+#nav-dropdown-container{
+  width: 100%
+}
+
+#navbarDropdown{
+  margin: 17% 0;
+}
+
+#user-dropdown-container .dropdown-menu .dropdown-item{
+  font-family: $main-font-family;
+  font-weight: $roboto-light-font-weight;
+  text-align: center;
+}
+
+
+.drawer-open nav.navbar.navbar-expand-lg .drawer-hamburger-icon {
+  background-color: transparent;
+}
+
+nav.navbar.navbar-expand-lg{
+  background-color: #37474F;
+  .drawer-hamburger-icon, .drawer-hamburger-icon:after, .drawer-hamburger-icon:before{
+    background-color: $nav-link-colors; 
+  }
+  span.navbar-toggler-icon{
+    background-image: none;
+    height: 24.66px / $mobile-mockup-width * 100vw;
+    width: 24.66px / $mobile-mockup-width * 100vw;
+  }
+
+}
+
+
+
+.drawer-menu > li {
+  margin-bottom: 15px;
+}
+
+
+.octicon-person.octicon{
+  fill: #fff;
+}
+
+nav.navbar{
+  height: $navbar-height;
+  // min-height: 70px;
+}
+
+
+
+body{
+  color: $body-color;
+  font-family: $main-font-family;
+  a, .dataTables_paginate ul.pagination a.page-link{
+    color: $body-link-color;
+    font-weight: $roboto-regular-font-weight;
+    font-size: 15px;    
+  }
+  .dataTables_paginate ul.pagination a.page-link{
+        border: 0;
+        margin-left: 20px / $mockup-width * 100%;
+        background: initial;
+
+  }
+  h1{
+    font-weight: $roboto-light-font-weight;
+    font-size: 36px;
+  
+  }
+  .subheader, table thead th{
+    font-weight: $roboto-light-font-weight;
+    font-size: 18px;
+    margin-left: 15px;
+  }
+
+  table tbody td{
+    font-size: 14px;
+    font-weight: $roboto-light-font-weight;
+  }
+
+  #transaction-index{
+    #filter{
+      width: 245px / $mockup-width * 100%;
+      height: $form-controls-height;
+      border-radius: 25px;
+
+    }
+    .search-container{
+      width: 491px / $mockup-width * 100%;
+    }
+    input[type=search]{
+      width: 360px / 491px * 100%;
+      height: $form-controls-height;
+      font-size: 19px;
+      font-weight: $roboto-thin-font-weight;
+      border-radius: 25px;
+
+    }
+    .row:first-child{
+      margin-bottom: 90px/ $mockup-height * 100%;
+
+    }
+  }
+}
+

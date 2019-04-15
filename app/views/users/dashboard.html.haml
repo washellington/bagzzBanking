@@ -1,0 +1,61 @@
+- if @current_user.accounts.empty?
+  #empty-account-container.d-flex.flex-column.justify-content-center.h-100
+    %div
+      = svg 'empty_account_icon'
+      %h2 No Account
+      = link_to "Open Account", new_user_account_path(user_id: @current_user.id), id: 'new-account-link'
+- else 
+  %ul#accounts-container
+    - @current_user.accounts.each do |x|
+      %li.account-card-list
+        = button_tag type: 'button', class: 'account-card', data:{account_id: x.id} do
+          %span.checking-name= x.name 
+          %span.amount= number_to_currency(Account.total(x.transactions))
+  = button_tag id:  'add-account-bttn' do
+    +
+
+= render layout: '/layouts/modal', locals: {modal_id: 'new-account-modal', title: 'New Account', button_title: 'New Account'} do 
+  = form_for Account.new,  method: :post do |f| 
+    .form-group
+      = f.text_field :name, placeholder: "Account Name", class: 'input-fields form-control', required: true
+    .form-group
+      = f.collection_select :account_type_id, AccountType.order(:account_type), :id, :account_type, {include_blank: "Account Type"}, {class: 'input-fields form-control', required: true}
+
+
+= content_for :javascript_onload do
+  :plain
+    let $modal = $("#new-account-modal").modal({
+      show: false
+    })
+
+    $("#new-account-link, #add-account-bttn").click((e) => {
+      $modal.modal('show')
+      e.preventDefault()
+    })
+
+    $("#new-account-bttn, #new-account-modal-bttn").click(function(){
+      $("form#new_account").submit()
+    })
+
+    $(".account-card").click(function(){
+      location.href = "#{accounts_path()}/" + $(this).data('account-id')
+    })
+
+    $("#new_account").validate({
+      submitHandler: function(form){
+        form.submit()
+      },
+      rules: {
+        'account[name]': {
+          required: true
+        },
+        'account[account_type_id]': {
+          required: true
+        }
+      }
+    })
+
+
+
+
+

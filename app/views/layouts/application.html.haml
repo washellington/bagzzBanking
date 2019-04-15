@@ -1,0 +1,247 @@
+%html
+  %head
+    %title
+      OnlinePortfolio
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    
+    
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    :plain
+
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+ 
+      <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+
+      <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+    = javascript_include_tag '/node_modules/jquery-validation/dist/jquery.validate.min.js', 'data-turbolinks-track': 'reload'
+
+    = javascript_include_tag '/node_modules/jquery-validation/dist/additional-methods.min.js', 'data-turbolinks-track': 'reload'
+
+
+  %body
+    - if @current_user.present?
+      %nav#user-main-drawer.drawer-nav
+        %ul
+          -#%li= link_to 'User Settings', "#", class: "dropdown-item"
+          %li= link_to "Sign out", logout_user_path(id: @current_user.id),  class: "dropdown-item"
+      %nav#main-nav.drawer-nav{role: "navigation"}
+        %ul.drawer-menu
+          %li
+            = link_to "Dashboard", dashboard_user_path(id: @current_user.id), class: "dropdown-item"
+          - if @selected_account.present?
+            %li= link_to "Account Main", account_path(id: @selected_account.id), class:  "dropdown-item"
+            %li= link_to "Deposit", deposit_account_transactions_path(account_id: @selected_account.id), class:  "dropdown-item", id: 'deposit-money-link'
+            %li= link_to "Withdraw", withdraw_account_transactions_path(account_id: @selected_account.id), class:  "dropdown-item", id: 'withdraw-money-link'
+            %li= link_to "Close Account", "#",  class: "dropdown-item", id: 'close-account-menu-item'
+      %nav{class: "navbar navbar-expand-lg navbar-light fixed-top justify-content-between"}
+        = button_tag  type: :button, id: "drawer-menu-bttn", class: "drawer-toggle drawer-hamburger main-nav-toggle" do
+          = svg 'hamburger'
+        = button_tag type: :button,  class: "navbar-brand", id: 'navbar-brand-img' do 
+          = svg 'logo'
+        = button_tag "", type: 'button', class: "navbar-toggler navbar-toggle-user",  "aria-expanded": false,  "aria-label": "Toggle navigation" do 
+          %span.navbar-toggler-icon.navbar-toggle-user#navbar-toggle-user
+            = svg 'user-logo'
+        .collapse.navbar-collapse#navbarSupportedContent
+          %ul#nav-dropdown-container.navbar-nav.mr-auto.d-inline-flex.p-2.d-flex.justify-content-between
+            %li.nav-item.active
+              = link_to  "#", class: "nav-link" do   
+                =#  @page_title || @action_name.titleize     
+                %span.sr-only
+                  current page
+            %li.nav-item
+              = link_to "#", class: "nav-link" do 
+                = image_tag '/dashboard-button.svg', alt: '', id: 'dashboard-button', class: 'image-fluid'
+            %li.nav-item.dropdown
+              - if @current_user.present?
+                #user-dropdown-container
+                  = link_to "#",class: "nav-link dropdown-toggle",  id: "navbarDropdown", role: "button", data:{toggle: "dropdown"}, "aria-haspopup": true,  "aria-expanded": false do 
+                    = image_tag '/user-logo.svg', alt: '', id: 'user-button', class: "image-fluid", :"aria-label" => "user menu"
+                  #user-main-dropdown.dropdown-menu.dropdown-menu-right{'aria-labelledby': "navbarDropdown"}
+                    = link_to 'User Settings', "#", class: "dropdown-item"
+                    = link_to "Sign out", logout_user_path(id: @current_user.id),  class: "dropdown-item" 
+    %div#main-content.container-fluid{class: @current_user.present? ? 'signed-in' : nil}
+      - if @current_user.present?
+        .row
+          .col{id: "#{controller_name}-#{action_name}-container"}
+            = yield
+      - else 
+        = yield
+    - if @selected_account.present?
+      = render layout: '/layouts/modal', locals: {modal_class: 'transactions-modal', modal_id: 'deposit-modal', title: 'Deposit Money', button_title: 'Deposit'} do 
+        = form_for Transaction.new, url: deposit_funds_account_transactions_path(account_id: @selected_account.id), html:{id: 'deposit_form'},method: :post do |f|
+          .form-group
+            .dollar-sign
+              $
+            = f.number_field :amount, placeholder: "Amount", class: 'input-fields form-control', require: true, min: 0, step: '.01', id: 'deposit_amount'
+          .form-group 
+            = f.text_area :description, class: 'input-fields form-control', placeholder: 'Description' , id: 'deposit_description'
+      = render layout: '/layouts/modal', locals: {modal_class: 'transactions-modal', modal_id: 'withdraw-modal', title: 'Withdraw Money', button_title: 'Withdraw'} do 
+        = form_for Transaction.new, url: withdraw_funds_account_transactions_path(account_id: @selected_account.id), html:{id: 'withdaw_form'}, method: :post do |f|
+          .form-group
+            .dollar-sign
+              $
+            = f.number_field :amount, placeholder: "Amount", class: 'input-fields form-control', require: true, min: 0, step: '.01', id: 'withdraw_amount'
+          .form-group 
+            = f.text_area :description, class: 'input-fields form-control', placeholder: 'Description', id: 'withdraw_description'
+      = render layout: '/layouts/modal', locals: {modal_id: 'close-account-modal', title: 'Close Account', button_title: 'Close Account', button_class: 'btn-danger'} do
+        = form_for @selected_account, method: :delete do |f|
+          %p
+            Are you sure you want to close this account ?
+      
+
+      = render layout: '/layouts/modal', locals: { modal_id: 'search-transaction-modal', title: 'Search Transactions', button_title: 'Search'} do
+        #date-picker-container
+          %div
+            = link_to "Cancel", "#", id: 'cancel-datepicker-link'
+        = form_for Transaction.new(account_id: @selected_account.id), url: search_account_transactions_path(account_id: @selected_account.id), method: :get do |f|
+          .form-group  
+            .input-group  
+              = f.text_field :description, placeholder: "Description", class: 'form-control input-fields', id: 'search_description'
+              .input-group-addon  
+                = svg 'search_icon'
+          -#
+            .form-group
+              = select_tag :account_type_id, options_from_collection_for_select(AccountType.order(:account_type), :id, :account_type), {include_blank: "Account Type", class: 'input-fields form-control'}
+          .input-daterange
+            .form-group  
+              .input-group
+                = f.text_field :start_date, placeholder: "From", class: 'form-control input-fields'
+                .input-group-addon
+                  = svg 'calendar'
+            .form-group  
+              .input-group
+                = f.text_field :end_date, placeholder: "To", class: 'form-control input-fields'
+                .input-group-addon
+                  = svg 'calendar'
+    = render layout: '/layouts/modal', locals: { modal_id: 'sign-up-modal', title: 'Sign up', button_title: 'Sign up', button_id: 'sign-up-submit-bttn'} do
+      = form_for User.new,  method: :post do |f| 
+        .form-group
+          = f.text_field :first_name, placeholder: "First Name", class: 'input-fields form-control'
+        .form-group
+          = f.text_field :last_name, placeholder: "Last Name", class: 'input-fields form-control'
+        .form-group
+          = f.text_field :email, placeholder: "Email", class: 'input-fields form-control', required: true
+        .form-group
+          =f.password_field :password, placeholder: "Password", class: 'input-fields form-control', required: true
+        .form-group
+          = f.password_field :password_confirmation, placeholder: "Confirm Password", class: 'input-fields form-control', required: true
+      %p 
+        By signing up you agree to #{link_to('Terms condition', '#')} and #{link_to('Privacy policy', '#')}
+
+  - unless flash.empty?
+    = render layout: '/layouts/modal', locals: { modal_id: 'flash-modal', title: flash_modal_title(flash.keys.first), button_title: 'Ok', button_class: flash_modal_button_type(flash.keys.first)} do
+      %p
+        - if flash.any?
+          = flash[flash.keys.first]
+            
+:javascript 
+  $(document).ready( function() { 
+    
+
+    $("#main-content,.navbar").click( function(e){
+      if($("#user-main-drawer").hasClass('open') && !$(e.target).hasClass('navbar-toggle-user') ){
+        $("#user-main-drawer").toggleClass('open')
+      }
+      if($("#main-nav").hasClass('open') && !$(e.target).hasClass('main-nav-toggle') ){
+        $("#main-nav").toggleClass('open')
+      }
+      e.stopPropagation()
+
+    })
+
+    $(".navbar-toggle-user").click( function(e){
+      if($("#main-nav").hasClass('open')){
+        $("#main-nav").toggleClass('open')
+      }
+      $("#user-main-drawer").toggleClass('open')
+      e.stopPropagation()
+    })
+
+    $("#drawer-menu-bttn").click( function(e){
+      if($("#user-main-drawer").hasClass('open')){
+        $("#user-main-drawer").toggleClass('open')
+      }  
+    $("#main-nav").toggleClass('open')
+      e.stopPropagation()
+    })
+    
+    let $withdrawModal = $("#withdraw-modal").modal({
+      show: false
+    })
+
+    let $depositModal = $("#deposit-modal").modal({
+      show: false
+    })
+
+    let $closeAccountModal = $("#close-account-modal").modal({
+      show: false
+    })
+
+    let $flashModal = $("#flash-modal").modal({
+      show: #{flash.any?}
+    })
+
+
+    $("#flash-modal-bttn").click(function(){
+      $flashModal.modal('hide')
+    })
+
+    let openModal = function(modal, e){
+      modal.modal('show') 
+      $("#user-main-drawer, #main-nav").removeClass('open') 
+      e.preventDefault()
+    }
+
+    $('#withdraw-money-link').click(function(e){
+      openModal($withdrawModal, e)
+    })
+
+    $('#deposit-money-link').click(function(e){
+      openModal($depositModal, e)
+    })
+
+    $("#withdraw-modal-bttn, #deposit-modal-bttn").click(function(){
+      $(this).closest('.modal-content').find('form').submit()
+    })
+
+    $('#close-account-menu-item').click(function(e){
+      openModal($closeAccountModal, e)
+    })
+
+    $("#close-account-modal-bttn").click(function(e){
+      $("#close-account-modal form").submit()
+      e.preventDefault()
+    })
+
+    $("#withdraw-modal form").validate({
+      submitHandler: function(form){
+        form.submit()
+      },
+      rules: {
+        'transaction[amount]': {
+          required: true,
+          min: .01
+        }
+      }
+    })
+
+    $("#deposit-modal form").validate({
+      submitHandler: function(form){
+        form.submit()
+      },
+      rules: {
+        'transaction[amount]': {
+          required: true,
+          min: .01
+        }
+      }
+    })
+
+    
+
+
+    
+    #{yield :javascript_onload}
+  })

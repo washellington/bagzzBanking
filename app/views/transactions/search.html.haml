@@ -1,0 +1,10 @@
+= render 'accounts/account_information', transactions: @transactions, account: @selected_account, search_criteria: @search_criteria
+
+= render 'transactions_list', transactions: @transactions
+
+= search_button
+
+- content_for  :javascript_onload do 
+  :plain
+    
+    new AccountSearch()

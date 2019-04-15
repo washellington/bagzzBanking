@@ -1,0 +1,11 @@
+.modal.fade{role: 'dialog', 'tabIndex': 1, id: modal_id, class: local_assigns[:modal_class]}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %h5.modal-title= title
+        = button_tag class: 'close', type: :button, data: {dismiss: "modal"}, 'aria-label': "Close" do
+          %span{'aria-hidden': true} &times;
+      .modal-body= yield
+      .modal-footer
+        = button_tag type: :button, class: "btn #{local_assigns[:button_class] || 'btn-primary'}", id: local_assigns[:button_id] || "#{modal_id}-bttn" do 
+          = button_title

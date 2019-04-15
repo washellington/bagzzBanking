@@ -1,0 +1,32 @@
+= render 'account_information', transactions: @selected_account.transactions, account: @selected_account
+
+= render 'transactions/transactions_list', transactions: @selected_account.transactions
+  
+= search_button
+-# 
+  %em= link_to('Spending', "#", id: "view-spending")
+  %table#transaction-show-table{style: "width: 100%"}
+    %thead 
+      %tr
+        %th Description
+        %th Amount 
+        %th Type 
+        %th Date 
+    %tbody 
+      - @transactions.each do |x|
+        %tr 
+          %td= x.description 
+          %td= x.amount 
+          %td= x.transaction_category.category
+          %td= x.date_applied
+
+- content_for  :javascript_onload do 
+  :plain
+
+    //$("#transaction-show-table").DataTable()
+
+    new AccountSearch()
+
+
+    
+  

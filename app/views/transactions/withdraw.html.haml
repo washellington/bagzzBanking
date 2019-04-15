@@ -1,0 +1,7 @@
+%h2 Withdraw
+= form_for Transaction.new, url: withdraw_funds_account_transactions_path(account_id: @selected_account.id), method: :post do |f|
+  = f.text_field :description, placeholder: "Description"
+  = f.number_field :amount
+  = f.submit "Withdraw"
+
+  

@@ -1,0 +1,16 @@
+- search_criteria = local_assigns[:search_criteria] || {}
+#account-info-container.account-info
+  %div
+    %span.checking-name= account.name
+
+    %span#account-total-amount.amount{class: "#{Account.total(transactions) < 0 ? "negative" : nil}"}= number_to_currency(Account.total(transactions)) 
+
+  - if search_criteria.values.any?{|x| x.present?}
+    %div  
+      %p.result-msg Showing transaction results for:
+      %ul 
+        - search_criteria.each do |k, v|
+          - if v.present?
+            %li
+              %span= k.to_s.humanize
+              %span= v

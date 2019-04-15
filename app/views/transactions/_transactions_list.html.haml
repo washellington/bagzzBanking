@@ -1,0 +1,18 @@
+- if transactions.blank?
+  #empty-transactions-container.d-flex.flex-column.justify-content-center
+    %div.d-flex.flex-column.justify-content-center
+      = svg 'no_transactions_icon'
+      %h2 No Transactions
+- else
+  %ul#transaction-list 
+    - transactions.each do |x|
+      %li.transaction-list-item 
+        %div
+          %span.date= x.date_applied.strftime "%b %d"
+          %hr
+        %div 
+          %div
+            %span.name=  x.description.present? ? x.description.truncate(20) : 'No Description'  
+            .value
+              %span= number_to_currency(x.account_balance)
+              %span{class: "#{x.net_amount < 0 ? 'negative' : 'positive'}"}= number_to_currency(x.net_amount)

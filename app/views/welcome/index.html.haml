@@ -1,0 +1,86 @@
+#welcome-index.row.align-items-center
+  .col#container
+    .row
+      .col.d-flex.justify-content-center
+        = image_tag  "/logo.svg", class: 'title-logo'
+      .col.justify-content-center.d-flex
+        = image_tag  "/bagzzz.svg", class: 'name-logo'
+      .col.justify-content-center.d-flex
+        %h2.title-quote "Financial management made simple"
+    .row
+      .col.d-flex.justify-content-center
+        = form_for User.new, url: sign_in_users_path do |f|
+          %div
+            .form-group
+              = f.text_field :email, placeholder: "Email", class: 'input-fields form-control', id: 'sign-in-email'
+            .form-group
+              = f.password_field :password, placeholder: "Password", class: 'input-fields  form-control', id: 'sign-in-password'
+          .form-buttons
+            = submit_tag "Login", {class: 'btn'}
+            = link_to "Sign Up", "#",  class: 'btn btn-light', id: 'sign-up-button'
+
+= content_for :javascript_onload do
+  :plain
+    
+    let $signUpForm = $("#sign-up-modal form");
+    let $signInForm = $("#new_user");
+    let $signUpSubmitBttn = $("#sign-up-submit-bttn")
+    let $signUpBttn = $("#sign-up-button")
+    let $signUpModal = $("#sign-up-modal").modal({
+      show: false
+    })
+
+    $signUpBttn.click((e) => {
+      $signUpModal.modal('show')
+      e.preventDefault()
+    })
+    
+    let $validator = $signUpForm.validate({
+      submitHandler: function(form){
+        form.submit()
+      },
+      rules: {
+        'user[email]': {
+          required:true,
+          email: true
+        },
+        'user[password]': {required: true},
+        'user[password_confirmation]': {
+          equalTo: "#user_password"
+        }
+      },
+      errorPlacement: function(error, element) {
+        error.prependTo( element.parent(".form-group") );
+      }
+    })
+
+    let $signInValidator = $signInForm.validate({
+      submitHandler: function(form){
+        form.submit()
+      },
+      rules: {
+        'user[email]': {
+          email: true,
+          required:true
+        },
+        'user[password]': {required: true},
+      },
+      errorPlacement: function(error, element) {
+        error.prependTo( element.parent(".form-group") );
+      }
+    })
+
+    $signUpSubmitBttn.click((e) =>{
+      $signUpForm.submit()
+    })
+
+    $signUpModal.on('show.bs.modal', (e) =>{
+      $validator.resetForm();
+      let $inputFieldds = $signUpForm.find("input.input-fields")
+      $inputFieldds.removeClass('error')
+      $inputFieldds.val("");
+    })
+  
+
+
+

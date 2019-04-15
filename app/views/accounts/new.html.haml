@@ -1,0 +1,8 @@
+%h1 New Account 
+= form_for  Account.new, url: user_accounts_path(user_id: @current_user.id), method: :post do |f|
+  = f.label :name, "Name", {placeholder: "Account Name"}
+  = f.text_field :name
+  = f.label :account_type_id, "Account Type"
+  = f.collection_select :account_type_id, AccountType.order(:account_type), :id, :account_type, include_blank: "Account Type"
+  = f.submit "Open Account"
+  

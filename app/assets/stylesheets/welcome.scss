@@ -1,3 +1,31 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'variables';
+
+
+#welcome-index .row > div{
+  flex-basis: auto;
+
+  form{
+
+    input{
+      @include mobile-input;
+    }
+    .form-buttons .btn{
+      @include mobile-input;
+      
+    }
+
+    input[type='submit']{
+      background-color: $primary-bttn-color;
+      color: #fff;
+    }
+    #sign-up-button{
+      color: $icon-color;
+    }
+
+  }
+
+}

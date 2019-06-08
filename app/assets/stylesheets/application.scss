@@ -11,37 +11,27 @@
  * It is generally better to create a new file per style scope.
  *
 *= require bootstrap-datepicker
+*= require_tree 
+ */
+
+ /*
+ Using https://mattbrictson.com/lightning-fast-sass-reloading-in-rails for creating style injections on the fly when a file is saved
  */
  @import  'bootstrap';
+ @import 'variables';
 
-
-$nav-link-colors: #fff;
-$nav-link-size: 22px;
-$main-font-family: Roboto, sans-serif;
-$roboto-thin-font-weight: 100;
-$roboto-light-font-weight: 300;
-$roboto-regular-font-weight: 400;
-
-$mockup-height: 900px;
-$mockup-width: 1440px;
-
-$mobile-mockup-height: 736px;
-$mobile-mockup-width: 414px;
-
-
-
-$body-color: #0f0f0f;
-$body-link-color: #F7931A;
-$button-color: #EB971C;
-$button-pressed-color: #BE7A17;
-$empty-font-color: #C1C1C1;
-$dark-bttn-pressed-color: rgba(255, 255, 255, 0.16);
-$light-bttn-pressed-color: rgb(247, 247, 247);;
-$form-controls-height: 50px / $mockup-height * 100%;
-$navbar-height: 70px / $mockup-height * 100vh;
 
 img, embed, object, video{
   max-width: 100%
+}
+
+body{
+  background-color: $background-color;
+  text-overflow: ellipsis;
+}
+
+.title-text{
+  color: $title-text-color;
 }
 
 // .modal-header .close{

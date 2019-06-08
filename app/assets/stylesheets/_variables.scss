@@ -1,0 +1,82 @@
+$primary-color: #ECEFF1;
+$title-text-color: #C1C1C1;
+$background-color: #ECEFF1;
+
+$primary-bttn-color: #FFA726;
+
+$icon-color: #A2A1A1;
+
+$mobile-mockup-height: 736px;
+$mobile-mockup-width: 414px;
+
+$mobile-input-height: 50px /  $mobile-mockup-height * 100vh;
+$mobile-input-border-radius: 50px;
+
+@mixin mobile-input {
+  width: 360px / $mobile-mockup-width * 100vw;
+  height: 50px /  $mobile-mockup-height * 100vh;
+  border-radius: 50px;
+  font-size: 5vw;
+  margin-bottom: 40px /  $mobile-mockup-height * 100vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+// $primary-bttn-pressed-color: #FFA33A;
+// $delete-bttn-color;
+// $delete-bttn-pressed-color;
+// $negative-amount-color;
+// $positive-amount-color;
+// $primary-color;
+// $accent-color;
+// $button-background-color;
+// $button-background-pressed-color;
+// $navbar-background-color;
+// $navbar-button-color;
+// $navbar-button-pressed-color;
+// $input-placeholder-color;
+
+// $contrast-accent-color-off-darker: #FFA33A;
+// $contrast-accent-color-darker: #FFA33A;
+// $contrast-accent-color: #FFA33A;
+// $dark-text-color: #174255;
+// $dark-text-bg:  #44B2E2;
+// $empty-bg: #B7C4C9;
+// $empty-text-bg: $empty-bg;
+// $disabled-color: #ccc;
+// $light-card-bg: #F7F7F7;
+
+
+// $mobile-height: 667px;
+// $mobile-width: 375px;
+
+// $login-button-text: #fff;
+// $login-button-bg: #44B2E2;
+
+// $slider-bg: $dark-text-color;
+// $slider-color: #FFA33A;
+
+// $nav-link-colors: #fff;
+// $nav-link-size: 22px;
+// $main-font-family: Roboto, sans-serif;
+// $roboto-thin-font-weight: 100;
+// $roboto-light-font-weight: 300;
+// $roboto-regular-font-weight: 400;
+
+// $mockup-height: 900px;
+// $mockup-width: 1440px;
+
+// $mobile-mockup-height: 736px;
+// $mobile-mockup-width: 414px;
+
+
+
+// $body-color: #0f0f0f;
+// $body-link-color: #F7931A;
+// $button-color: #EB971C;
+// $button-pressed-color: #BE7A17;
+// $empty-font-color: #C1C1C1;
+// $dark-bttn-pressed-color: rgba(255, 255, 255, 0.16);
+// $light-bttn-pressed-color: rgb(247, 247, 247);;
+// $form-controls-height: 50px / $mockup-height * 100%;
+// $navbar-height: 70px / $mockup-height * 100vh;

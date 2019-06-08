@@ -1,6 +1,6 @@
 #welcome-index.row.align-items-center
   .col#container
-    .row
+    .row.flex-column 
       .col.d-flex.justify-content-center
         = image_tag  "/logo.svg", class: 'title-logo'
       .col.justify-content-center.d-flex
@@ -8,14 +8,14 @@
       .col.justify-content-center.d-flex
         %h2.title-quote "Financial management made simple"
     .row
-      .col.d-flex.justify-content-center
+      .col.d-flex.justify-content-center.flex-column 
         = form_for User.new, url: sign_in_users_path do |f|
           %div
             .form-group
               = f.text_field :email, placeholder: "Email", class: 'input-fields form-control', id: 'sign-in-email'
             .form-group
               = f.password_field :password, placeholder: "Password", class: 'input-fields  form-control', id: 'sign-in-password'
-          .form-buttons
+          .form-buttons.d-flex.justify-content-center.flex-column
             = submit_tag "Login", {class: 'btn'}
             = link_to "Sign Up", "#",  class: 'btn btn-light', id: 'sign-up-button'
 

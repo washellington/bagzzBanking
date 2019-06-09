@@ -21,10 +21,6 @@ class UsersController < ApplicationController
       flash[:error] = "Email and Password are required"
       redirect_to root_url
       return
-    elsif user_params[:password] != user_params[:password_confirmation]
-      flash[:error] = "Password doesnt not match confirm password"
-      redirect_to root_url
-      return
     end
     login_user(User.where(password: user_params[:password], email: user_params[:email]).first)
   end

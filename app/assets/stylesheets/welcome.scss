@@ -5,27 +5,63 @@
 @import 'variables';
 
 
-#welcome-index .row > div{
-  flex-basis: auto;
+#welcome-index .row {
+  
+  
+  .title-quote{
+    color: $title-text-color;
+    font-size: 5vw;
+  }
 
-  form{
+  .name-logo{
+    height: 10vh;
+    width: auto;
+    //margin-bottom: 33px / $mobile-mockup-height * 100%;
+  }
 
-    input{
-      @include mobile-input;
-    }
-    .form-buttons .btn{
-      @include mobile-input;
+  .title-logo{
+    height: 91px / $mobile-mockup-height * 100vh;
+    width: auto;
+    @include mobile-margin-top;
+  }
+  > div{
+    
+    @include mobile-margin-bottom;
+
+    flex-basis: auto;
+
+    form{
+
+      input{
+        @include mobile-input;
+        color: $title-text-color;
+        @media (orientation: landscape){
+          font-size: 3vh;
+        }
+      }
+      .form-buttons{ 
+        flex-direction: column;
+        @media(min-width: 600px){
+          flex-direction: row;
+        }
+        .btn{
+          @include responsive-input;
+        }
+      }
+
       
-    }
+      
+      
 
-    input[type='submit']{
-      background-color: $primary-bttn-color;
-      color: #fff;
-    }
-    #sign-up-button{
-      color: $icon-color;
+      input[type='submit']{
+        background-color: $primary-bttn-color;
+        color: #fff;
+      }
+      #sign-up-button{
+        color: $icon-color;
+      }
+
     }
 
   }
-
 }

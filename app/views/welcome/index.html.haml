@@ -15,7 +15,7 @@
               = f.text_field :email, placeholder: "Email", class: 'input-fields form-control', id: 'sign-in-email'
             .form-group
               = f.password_field :password, placeholder: "Password", class: 'input-fields  form-control', id: 'sign-in-password'
-          .form-buttons.d-flex.justify-content-center.flex-column
+          .form-buttons.d-flex.justify-content-center
             = submit_tag "Login", {class: 'btn'}
             = link_to "Sign Up", "#",  class: 'btn btn-light', id: 'sign-up-button'
 

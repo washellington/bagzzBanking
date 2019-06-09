@@ -1,5 +1,7 @@
 %html
   %head
+    -# https://stackoverflow.com/questions/24345046/responsive-media-query-not-working-in-google-chrome 
+    %meta{ name: "viewport", content: "width=device-width,initial-scale=1"}
     %title
       OnlinePortfolio
     = csrf_meta_tags
@@ -20,7 +22,7 @@
     = javascript_include_tag '/node_modules/jquery-validation/dist/additional-methods.min.js', 'data-turbolinks-track': 'reload'
 
 
-  %body
+  %body{class: @current_user.present? ? 'signed-in': ''}
     - if @current_user.present?
       %nav#user-main-drawer.drawer-nav
         %ul
@@ -35,7 +37,7 @@
             %li= link_to "Deposit", deposit_account_transactions_path(account_id: @selected_account.id), class:  "dropdown-item", id: 'deposit-money-link'
             %li= link_to "Withdraw", withdraw_account_transactions_path(account_id: @selected_account.id), class:  "dropdown-item", id: 'withdraw-money-link'
             %li= link_to "Close Account", "#",  class: "dropdown-item", id: 'close-account-menu-item'
-      %nav{class: "navbar navbar-expand-lg navbar-light fixed-top justify-content-between"}
+      %nav#main-top-navbar{class: "navbar navbar-expand-lg navbar-light fixed-top justify-content-between"}
         = button_tag  type: :button, id: "drawer-menu-bttn", class: "drawer-toggle drawer-hamburger main-nav-toggle" do
           = svg 'hamburger'
         = button_tag type: :button,  class: "navbar-brand", id: 'navbar-brand-img' do 

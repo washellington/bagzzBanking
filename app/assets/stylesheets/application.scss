@@ -28,10 +28,66 @@ img, embed, object, video{
 body{
   background-color: $background-color;
   text-overflow: ellipsis;
+  &.signed-in{
+    background-color: white;
+  }
 }
 
 .title-text{
   color: $title-text-color;
+}
+
+#main-top-navbar{
+  background-color: $navbar-background-color;
+  height: $navbar-height;
+
+  button{
+    @include icon-bttn;
+  }
+}
+.drawer-nav{
+  background-color: white;
+  position: fixed;
+  top: $navbar-height;
+  height: 100%;
+  z-index: 10000;
+  width: $drawer-width;
+  transition: all .3s ease;
+  visibility: hidden;
+  li{
+    margin-top: 22%;
+  }
+  a{
+    font-size: 2.5vh;
+    color: $navbar-link-colors;
+  }
+  ul{
+    list-style: none;
+  }
+}
+
+  #main-nav{    
+    box-shadow: 6px 0px 20px 1px rgba(0, 0, 0, 0.2);
+    margin-top: 0px;
+    left: -1 * $drawer-width;
+  }
+
+  #main-nav.open{
+    left: 0vw;
+    visibility: visible
+  }
+
+#main-content.signed-in{
+  margin-top: $navbar-height;
+}
+
+
+
+#navbar-brand-img{
+   svg{
+      width: auto;
+      height: 5vh;
+    }
 }
 
 // .modal-header .close{
@@ -592,16 +648,6 @@ body{
 //       list-style: none;
 //     }
 // }
-// #main-nav{    
-//   box-shadow: 6px 0px 20px 1px rgba(0, 0, 0, 0.2);
-//   margin-top: 0px;
-//   left: -60vw;
-// }
-
-// #main-nav.open{
-//   left: 0vw;
-//   visibility: visible
-// }
 
 // #empty-transactions-container{
 //   flex: 1;
@@ -698,12 +744,7 @@ body{
 //   height: 100%;
 // }
 
-// #navbar-brand-img{
-//  svg{
-//     width: auto;
-//     height: 5vh;
-//   }
-// }
+// 
 
 // #drawer-menu-bttn, button.navbar-toggler, button.navbar-brand  {
 //   width: auto;

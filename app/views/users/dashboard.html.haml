@@ -9,7 +9,7 @@
     %ul#accounts-container
       - @current_user.accounts.each do |x|
         %li.account-card-list
-          = button_tag type: 'button', class: 'account-card', data:{account_id: x.id} do
+          = button_tag type: 'button', class: 'account-card d-flex', data:{account_id: x.id} do
             %span.checking-name= x.name 
             %span.amount= number_to_currency(Account.total(x.transactions))
     = button_tag id:  'add-account-bttn' do

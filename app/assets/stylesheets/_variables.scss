@@ -20,6 +20,10 @@ $navbar-background-color: #37474F;
 
 $drawer-width: 30vw;
 
+$button-bg-color: #FBFBFB;
+
+$breakpoint: 600px;
+
 
 @mixin mobile-margin-top{
   margin-top: 40px /  $mobile-mockup-height * 100vh;
@@ -53,7 +57,7 @@ $drawer-width: 30vw;
 
 @mixin responsive-input{
   @include mobile-input;
-  @media(min-width: 600px){
+  @media(min-width: $breakpoint){
     @include desktop-input;
   }
   @media (orientation: landscape){
@@ -64,6 +68,42 @@ $drawer-width: 30vw;
 @mixin icon-bttn{
   background-color: transparent;
   border: 0;
+  &:focus{
+    outline: 0;
+  }
+}
+
+@mixin bttn-state($bg-color) {
+  &:active, &:focus, &:hover, &.pressed {
+    background-color: darken($bg-color, 10%);
+  }
+}
+
+@mixin  action-bttn {
+  height: 18vw;
+  width: 18vw;
+  border-radius: 50%;
+  font-size: 9vw;
+  text-align: center;
+  background-color: $button-bg-color;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 3vh;
+  color: #FFA726;
+  border: 0;
+  box-shadow: 0 7px 10px 0px rgba(0, 0, 0, .16);
+  margin-right: 6vw;
+  outline: 0;
+  max-width: 93px;
+  max-height: 93px;
+  min-width: 64px;
+  min-height: 64px;
+  @include bttn-state($button-bg-color);
+  @media(min-width: $breakpoint){
+    font-size: 60px;
+  }
+  
 }
 
 

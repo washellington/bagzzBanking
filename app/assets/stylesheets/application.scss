@@ -43,6 +43,7 @@ body{
 
   button{
     @include icon-bttn;
+    padding: 0;
   }
 }
 .drawer-nav{
@@ -88,7 +89,14 @@ body{
       width: auto;
       height: 5vh;
     }
+    margin-right: 0;
 }
+
+
+.negative{
+  color: #EB381C;
+}
+
 
 // .modal-header .close{
 //   padding: 2vw;

@@ -1,3 +1,160 @@
 // Place all the styles related to the Account controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+// #accounts-show-container {
+//   display: flex;
+//   flex-direction: column;
+//   #account-info-container{
+//     justify-content: center;
+//     > div{
+//       padding: 3vw 0;
+//     }
+//   }
+// }
+
+#search-transaction-modal{
+  @include modal-layout;
+  @include modal-form;
+  @media(min-width: $breakpoint){
+    @include mobile-modal;
+  }
+}
+
+#search-transaction-bttn{
+  @include action-bttn;
+}
+#account-info-container{
+  min-height: 20vw;
+  width: 100%;
+  
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  @include  common-border-bttm;
+  > div{
+    width: 100%;
+    display: flex;
+    margin: 3vw 0;
+    &.checking-name{
+      text-align: center
+    }
+
+    &:first-child span{
+      text-align: center;
+    }
+
+    &:nth-child(2){
+      display: block;
+    }
+    
+    ul{
+      list-style: none;
+      li{
+        width: 100%;
+        font-size: 3.5vw;
+        font-weight: $roboto-regular-font-weight;
+
+        > span:first-child{
+          margin-right: 5vw;
+        }
+        > span:last-child{
+          font-weight: $roboto-thin-font-weight;
+        }
+      }
+    }
+    .result-msg{
+      font-weight: 400;
+      font-size: 4vw;
+      color: $primary-bttn-color;
+    }
+    > span{
+      font-weight: 100;
+      width: 50%;
+      text-align: left;
+    }
+  } 
+
+}
+
+.checking-name{
+  font-size: 5.5vw;
+  color: $primary-bttn-color;
+}
+
+.amount{
+  font-size: 6vw;
+}
+
+.account-card{
+  @include card-layout
+
+}
+
+#transaction-list {
+    padding: 2vw;
+    
+    li.transaction-list-item{
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      font-size: 4vw;
+      margin-top: 5vh;
+      > div:first-child{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        span{
+          width: 20%;
+        margin-right: .5vw;
+        font-weight: 300;
+        }
+        hr{
+          @include  common-border-bttm;
+          width: 100%;
+        }
+      }
+  
+      > div:last-child{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 3vw 6vw;
+        background-color: #FBFBFB;
+        box-shadow: 0px 11px 16px 2px rgba(0,0,0, .16);
+        margin-top: 4vw;
+        > div{
+          display: flex;
+          justify-content: space-between;
+          span{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+          }
+          .name{
+            font-size: smaller;
+          }
+          .value{
+            span{
+              font-size: smaller
+            }
+  
+            > span:first-child{
+              font-size: larger;
+            }
+            
+            .positive{
+              color: #058A0E;
+            }
+            
+            
+          }
+        }
+      }
+    }
+  }
+  

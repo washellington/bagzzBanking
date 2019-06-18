@@ -5,7 +5,7 @@
         %h5.modal-title= title
         = button_tag class: 'close', type: :button, data: {dismiss: "modal"}, 'aria-label': "Close" do
           %span{'aria-hidden': true} &times;
-      .modal-body= yield
+      .modal-body.d-flex= yield
       .modal-footer
         = button_tag type: :button, class: "btn #{local_assigns[:button_class] || 'btn-primary'}", id: local_assigns[:button_id] || "#{modal_id}-bttn" do 
           = button_title

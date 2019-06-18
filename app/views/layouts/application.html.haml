@@ -142,7 +142,7 @@
   $(document).ready( function() { 
     
 
-    $("#main-content,.navbar").click( function(e){
+    $("#main-content,.navbar, body").click( function(e){
       if($("#user-main-drawer").hasClass('open') && !$(e.target).hasClass('navbar-toggle-user') ){
         $("#user-main-drawer").toggleClass('open')
       }

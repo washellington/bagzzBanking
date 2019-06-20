@@ -40,7 +40,7 @@
       %nav#main-top-navbar{class: "navbar navbar-expand-lg navbar-light fixed-top justify-content-between"}
         = button_tag  type: :button, id: "drawer-menu-bttn", class: "drawer-toggle drawer-hamburger main-nav-toggle" do
           = svg 'hamburger'
-        = button_tag type: :button,  class: "navbar-brand", id: 'navbar-brand-img' do 
+        = button_tag type: :button,  class: "navbar-brand navbar-toggler", id: 'navbar-brand-img' do 
           = svg 'logo'
         = button_tag "", type: 'button', class: "navbar-toggler navbar-toggle-user",  "aria-expanded": false,  "aria-label": "Toggle navigation" do 
           %span.navbar-toggler-icon.navbar-toggle-user#navbar-toggle-user

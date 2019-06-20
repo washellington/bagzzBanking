@@ -82,10 +82,16 @@
 .checking-name{
   font-size: 5.5vw;
   color: $primary-bttn-color;
+  @media (min-width: 1000px){
+    font-size: 40pt;
+  }
 }
 
 .amount{
   font-size: 6vw;
+  @media (min-width: 1000px){
+    font-size: 50pt;
+  }
 }
 
 .account-card{

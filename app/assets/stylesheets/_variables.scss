@@ -29,6 +29,11 @@ $roboto-thin-font-weight: 100;
 $roboto-light-font-weight: 300;
 $roboto-regular-font-weight: 400;
 
+$shadow-color: rgba(0, 0, 0, .16);
+
+@mixin common-box-shadow {
+  box-shadow: 0 3px 6px 0px $shadow-color;
+}
 
 @mixin common-border-bttm {
   border-bottom: 1.2px solid darken($background-color,10%);
@@ -90,19 +95,19 @@ $roboto-regular-font-weight: 400;
 
 @mixin card-layout {
   border: 0;
-      min-height: 101.68px;
-      height: 101.68px / $mobile-mockup-height * 100vh;
-      min-width: 300px;
-      width: 346.26px / $mobile-mockup-width * 100vw;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
-      margin-top: 7vh;
-      background-color: $button-bg-color;
-      justify-content: space-evenly;
-      align-items: center;
+  min-height: 101.68px;
+  height: 101.68px / $mobile-mockup-height * 100vh;
+  min-width: 300px;
+  width: 346.26px / $mobile-mockup-width * 100vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7vh;
+  background-color: $button-bg-color;
+  justify-content: space-evenly;
+  align-items: center;
+  @include common-box-shadow();
+  @include bttn-state($button-bg-color);
 
-      @include bttn-state($button-bg-color)
 }
 
 @mixin  action-bttn {
@@ -116,9 +121,9 @@ $roboto-regular-font-weight: 400;
   bottom: 0;
   right: 0;
   margin-bottom: 3vh;
-  color: #FFA726;
+  color: $primary-bttn-color;
   border: 0;
-  box-shadow: 0 7px 10px 0px rgba(0, 0, 0, .16);
+  //box-shadow: 0 7px 10px 0px $shadow-color;
   margin-right: 6vw;
   outline: 0;
   max-width: 93px;
@@ -126,6 +131,7 @@ $roboto-regular-font-weight: 400;
   min-width: 64px;
   min-height: 64px;
   @include bttn-state($button-bg-color);
+  @include common-box-shadow();
   @media(min-width: $breakpoint){
     font-size: 60px;
   }

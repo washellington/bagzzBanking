@@ -96,6 +96,17 @@ body{
 .negative{
   color: #EB381C;
 }
+#main-top-navbar .navbar-expand-lg .navbar-toggler {
+  display: block !important;
+}
+#nav-dropdown-container{
+  width: 100%;
+  li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 
 
 // .modal-header .close{

@@ -13,7 +13,7 @@
             %span.checking-name= x.name 
             %span.amount= number_to_currency(Account.total(x.transactions))
     = button_tag id:  'add-account-bttn' do
-      +
+      = svg 'plus'
 
   = render layout: '/layouts/modal', locals: {modal_id: 'new-account-modal', title: 'New Account', button_title: 'New Account'} do 
     = form_for Account.new,  method: :post do |f| 

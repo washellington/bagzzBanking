@@ -16,4 +16,12 @@
   #add-account-bttn{
     @include action-bttn;
   }
+
+  #new-account-modal{
+    @include modal-layout;
+    @include modal-form;
+    @media(max-width: $breakpoint){
+      @include mobile-modal;
+    }
+  }
 }

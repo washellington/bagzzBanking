@@ -140,7 +140,7 @@ $shadow-color: rgba(0, 0, 0, .16);
 
 @mixin modal-layout {
   .modal-body{
-    @media(min-width: $breakpoint){
+    @media(max-width: $breakpoint){
       flex-direction: column;
     }
   }
@@ -150,6 +150,15 @@ $shadow-color: rgba(0, 0, 0, .16);
   .form-group, p{
     font-size: 2.5vh;
   }
+
+  .input-fields{
+  min-height: 45px;
+  min-width: 45px;
+  height: 50px / $mobile-mockup-height * 100vh;
+  border-radius: 100px;
+  width: 100%;
+}
+
   .form-group{
     margin-bottom: 77px / $mobile-mockup-height * 100%;
     display: flex;
@@ -163,11 +172,13 @@ $shadow-color: rgba(0, 0, 0, .16);
       font-size: larger;
     }
     input{
-      width: 90%;
       margin-bottom: 0;
     }
   }
       .input-group{
+        input{
+          width: 90%;
+        }
         border-radius: 100px;
         &.error{
           border: 1px solid red;

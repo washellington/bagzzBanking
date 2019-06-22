@@ -53,13 +53,16 @@ body{
   height: 100%;
   z-index: 10000;
   width: $drawer-width;
+  @media (max-width: $breakpoint) {
+    width: 60vw
+  }
   transition: all .3s ease;
   visibility: hidden;
   li{
     margin-top: 22%;
   }
   a{
-    font-size: 2.5vh;
+    font-size: 2.5vmax;
     color: $navbar-link-colors;
   }
   ul{
@@ -73,16 +76,14 @@ body{
     left: -1 * $drawer-width;
   }
 
-  #main-nav.open{
-    left: 0vw;
-    visibility: visible
-  }
+#main-nav.open{
+  left: 0vw;
+  visibility: visible
+}
 
 #main-content.signed-in{
   margin-top: $navbar-height;
 }
-
-
 
 #navbar-brand-img{
    svg{
@@ -92,13 +93,14 @@ body{
     margin-right: 0;
 }
 
-
 .negative{
   color: #EB381C;
 }
+
 #main-top-navbar .navbar-expand-lg .navbar-toggler {
   display: block !important;
 }
+
 #nav-dropdown-container{
   width: 100%;
   li{

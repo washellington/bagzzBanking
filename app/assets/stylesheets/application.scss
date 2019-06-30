@@ -70,14 +70,27 @@ body{
   }
 }
 
-  #main-nav{    
-    box-shadow: 6px 0px 20px 1px rgba(0, 0, 0, 0.2);
+#main-nav{    
+    box-shadow: 6px 0px 20px 1px $shadow-color;
     margin-top: 0px;
     left: -1 * $drawer-width;
-  }
+}
+
+#user-main-drawer{
+  box-shadow: -6px 0px 20px 1px  $shadow-color;
+  right: -1 * $drawer-width;//-60vw;
+  margin-top: 0px;
+}
+
+#user-main-drawer.open{
+  right: 0vw;
+}
 
 #main-nav.open{
   left: 0vw;
+}
+
+.drawer-nav.open{
   visibility: visible
 }
 
@@ -99,6 +112,10 @@ body{
 
 #main-top-navbar .navbar-expand-lg .navbar-toggler {
   display: block !important;
+}
+
+#navbar-toggle-user{
+  background: 0;
 }
 
 #nav-dropdown-container{
@@ -738,11 +755,6 @@ body{
 //   padding: 0;
 // }
 
-// #user-main-drawer{
-//   box-shadow: -6px 0px 61px 2px  rgba(0,0,0, .2);
-//   right: -60vw;
-//   margin-top: 0px;
-// }
 
 // #main-content{
 //   height: 100%;

@@ -14,6 +14,10 @@
 //   }
 // }
 
+#new_transaction{
+  height: 100%;
+}
+
 #search-transaction-modal{
   @include modal-layout;
   @include modal-form;

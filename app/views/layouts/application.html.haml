@@ -21,6 +21,7 @@
 
     = javascript_include_tag '/node_modules/jquery-validation/dist/additional-methods.min.js', 'data-turbolinks-track': 'reload'
 
+    = javascript_include_tag '/node_modules/moment/moment.js', 'data-turbolinks-track': 'reload'
 
   %body{class: @current_user.present? ? 'signed-in': ''}
     - if @current_user.present?
@@ -94,10 +95,84 @@
       
 
       = render layout: '/layouts/modal', locals: { modal_id: 'search-transaction-modal', title: 'Search Transactions', button_title: 'Search'} do
-        #date-picker-container
-          %div
-            = link_to "Cancel", "#", id: 'cancel-datepicker-link'
         = form_for Transaction.new(account_id: @selected_account.id), url: search_account_transactions_path(account_id: @selected_account.id), method: :get do |f|
+          .date-picker-widget
+            #date-picker-container
+              %div
+                .row
+                  .col-sm
+                    .form-group  
+                      = f.text_field :start_date, placeholder: "From", class: 'form-control input-fields'
+                    
+                  .col-sm
+                    .form-group  
+                      = f.text_field :end_date, placeholder: "To", class: 'form-control input-fields'
+              .row
+                .col-sm
+                  .arrow-left
+                .col-sm
+                  %span.month-year{data:{ month: "", year: ""}}
+                .col-sm
+                  .arrow-right
+              .row
+                #days
+                  %span Sun
+                  %span Mon
+                  %span Tue
+                  %span Wed
+                  %span Thu
+                  %span Fri
+                  %span Sat
+                #week-0.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+                #week-1.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+                #week-2.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+                #week-3.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+                #week-4.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+                #week-5.weeks
+                  .day0
+                  .day1 
+                  .day2 
+                  .day3
+                  .day4
+                  .day5
+                  .day6
+          = link_to "Cancel", "#", id: 'cancel-datepicker-link'
+
           .form-group  
             .input-group  
               = f.text_field :description, placeholder: "Description", class: 'form-control input-fields', id: 'search_description'

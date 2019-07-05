@@ -1,0 +1,75 @@
+@import 'variables';
+
+
+.date-picker-widget{
+  height: 100%;
+  #date-picker-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .weeks.active, #days {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+      flex: 1;
+
+      > div {
+        flex: 1;
+        text-align: center;
+      }
+    }
+    
+    
+    .row{
+      flex-wrap: nowrap;
+      .col-sm:nth-child(2){
+        text-align: center
+      }
+      &:last-child{
+        flex: 1;
+        flex-direction: column
+      }
+    }
+
+    &:last-child{
+      flex: 1
+    }
+  }
+  
+  .arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    
+    border-bottom: 20px solid $primary-bttn-color;
+  }
+  
+  .arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    
+    border-top: 20px solid $primary-bttn-color;
+  }
+  
+  .arrow-right {
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    float: right;
+    border-left: 20px solid $primary-bttn-color;
+  }
+  
+  .arrow-left {
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent; 
+    
+    border-right:20px solid $primary-bttn-color; 
+  }
+  
+}
